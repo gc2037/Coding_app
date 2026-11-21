@@ -15,6 +15,7 @@ const LANGS = [
   ['php','PHP','php','8.2.3','<?php echo "Hello, world!";'],
   ['ruby','Ruby','ruby','3.0.1','puts "Hello, world!"'],
   ['swift','Swift','swift','5.3.3','print("Hello, world!")'],
+  ['swift','SwiftUI','swift','5.3.3','import SwiftUI\n\nstruct ContentView: View {\n    var body: some View {\n        Text("Hello, world!")\n            .padding()\n    }\n}\n'],
   ['kotlin','Kotlin','kotlin','1.8.20','fun main() { println("Hello, world!") }'],
   ['html','HTML','html','markup','<h1>Hello, world!</h1>'],
   ['css','CSS','css','stylesheet','h1 { color: #7c6cf2; }'],
@@ -48,7 +49,7 @@ export default function Page() {
         setOutput('Opened preview in a new tab.');
         return;
       }
-      const response = await fetch('/api/execute', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ language: language[2], version: language[3], files: [{ name: language[0] === 'java' ? 'Main.java' : 'main', content: code }] }) });
+      const response = await fetch('/api/execute', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ language: language[2], version: language[3], files: [{ name: language[0] === 'java' ? 'Main.java' : language[0] === 'swift' ? 'main.swift' : 'main', content: code }] }) });
       const data = await response.json();
       setOutput([data.run?.stdout, data.run?.stderr, data.compile?.stdout, data.compile?.stderr, data.message].filter(Boolean).join('\n') || 'Program completed with no output.');
     } catch (error) { setOutput(error instanceof Error ? error.message : 'Execution failed.'); }
@@ -72,14 +73,14 @@ export default function Page() {
     <main>
       <header><div className="brand"><span className="mark">&lt;/&gt;</span><b>Code Studio</b></div><div className="status"><i /> AI connected</div></header>
       <section className="workspace">
-        <aside className="explorer"><div className="aside-title">LANGUAGE</div><div className="languages">{LANGS.map((lang) => <button key={lang[0]} className={language[0]===lang[0]?'active':''} onClick={()=>changeLanguage(lang)}><span className="lang-dot">{lang[1].slice(0,2).toUpperCase()}</span><span>{lang[1]}</span></button>)}</div></aside>
+        <aside className="explorer"><div className="aside-title">LANGUAGE</div><div className="languages">{LANGS.map((lang) => <button key={`${lang[0]}-${lang[1]}`} className={language[1]===lang[1]?'active':''} onClick={()=>changeLanguage(lang)}><span className="lang-dot">{lang[1].slice(0,2).toUpperCase()}</span><span>{lang[1]}</span></button>)}</div></aside>
         <section className="editor-panel">
           <div className="toolbar"><div><span className="crumb">main</span><b>{language[1]}</b></div><button className="run" onClick={runCode} disabled={running}>▶ {running?'Running':'Run'}</button></div>
           <div className="editors"><div className="code-wrap"><Editor height="100%" language={language[0]} value={code} theme="vs-dark" onChange={(v)=>setCode(v||'')} options={{fontSize:14,minimap:{enabled:false},padding:{top:14},automaticLayout:true,scrollBeyondLastLine:false}} /></div>
           <div className="output"><div className="output-title"><span>OUTPUT</span><button onClick={()=>setOutput('')}>Clear</button></div><pre>{output || 'Run your code to see output here.'}</pre></div></div>
         </section>
         <aside className="chat"><div className="chat-title"><span>AI Assistant</span><span className="spark">✦</span></div><div className="messages">{chat.length===0 && <div className="empty"><span>✦</span><p>Ask about your code, debug an error, or request an implementation.</p></div>}{chat.map((message,i)=><div className={`message ${message.role}`} key={i}>{message.content}</div>)}{chating&&<div className="message assistant thinking">Thinking...</div>}<div ref={chatEnd}/></div>
-          <div className="composer"><textarea value={prompt} onChange={(e)=>setPrompt(e.target.value)} onKeyDown={(e)=>{if(e.key==='Enter'&&!e.shiftKey){e.prevent.preventDefault();sendChat();}}} placeholder="Ask the AI..."/><button onClick={sendChat} disabled={chating||!prompt.trim()} aria-label="Send">↑</button></div>
+          <div className="composer"><textarea value={prompt} onChange={(e)=>setPrompt(e.target.value)} onKeyDown={(e)=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendChat();}}} placeholder="Ask the AI..."/><button onClick={sendChat} disabled={chating||!prompt.trim()} aria-label="Send">↑</button></div>
         </aside>
       </section>
     </main>
