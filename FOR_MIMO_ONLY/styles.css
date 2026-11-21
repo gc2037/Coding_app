@@ -1,0 +1,13 @@
+:root {
+  color: #e6e8ef;
+  background: #0b0c10;
+  font-family: system-ui, sans-serif;
+}
+
+.mimo-card {
+  max-width: 32rem;
+  margin: 3rem auto;
+  padding: 2rem;
+  border-radius: 1rem;
+  background: #17181d;
+}
