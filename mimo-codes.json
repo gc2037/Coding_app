@@ -2,5 +2,24 @@
   "name": "Mimo Codes",
   "description": "Storage for Mimo coding snippets and exercises.",
   "version": 1,
-  "codes": []
+  "codes": [
+    {"id":"html","name":"HTML","files":["FOR_MIMO_ONLY/index.html"]},
+    {"id":"javascript","name":"JavaScript","files":["FOR_MIMO_ONLY/index.js"]},
+    {"id":"jsx","name":"JSX","files":["FOR_MIMO_ONLY/MimoCard.jsx"]},
+    {"id":"css","name":"CSS","files":["FOR_MIMO_ONLY/styles.css"]},
+    {"id":"react","name":"React","files":["FOR_MIMO_ONLY/ReactApp.jsx"]},
+    {"id":"react-router","name":"React Router","files":["FOR_MIMO_ONLY/ReactRouter.jsx"]},
+    {"id":"html-css","name":"HTML + CSS","files":["FOR_MIMO_ONLY/index.html","FOR_MIMO_ONLY/styles.css"]},
+    {"id":"html-javascript","name":"HTML + JavaScript","files":["FOR_MIMO_ONLY/index.html","FOR_MIMO_ONLY/index.js"]},
+    {"id":"html-jsx","name":"HTML + JSX","files":["FOR_MIMO_ONLY/index.html","FOR_MIMO_ONLY/MimoCard.jsx"]},
+    {"id":"html-react","name":"HTML + React","files":["FOR_MIMO_ONLY/index.html","FOR_MIMO_ONLY/ReactApp.jsx"]},
+    {"id":"react-css","name":"React + CSS","files":["FOR_MIMO_ONLY/ReactApp.jsx","FOR_MIMO_ONLY/styles.css"]},
+    {"id":"react-router-css","name":"React Router + CSS","files":["FOR_MIMO_ONLY/ReactRouter.jsx","FOR_MIMO_ONLY/styles.css"]},
+    {"id":"html-css-javascript","name":"HTML + CSS + JavaScript","files":["FOR_MIMO_ONLY/index.html","FOR_MIMO_ONLY/styles.css","FOR_MIMO_ONLY/index.js"]},
+    {"id":"html-css-jsx","name":"HTML + CSS + JSX","files":["FOR_MIMO_ONLY/index.html","FOR_MIMO_ONLY/styles.css","FOR_MIMO_ONLY/MimoCard.jsx"]},
+    {"id":"html-css-react","name":"HTML + CSS + React","files":["FOR_MIMO_ONLY/index.html","FOR_MIMO_ONLY/styles.css","FOR_MIMO_ONLY/ReactApp.jsx"]},
+    {"id":"html-css-react-router","name":"HTML + CSS + React Router","files":["FOR_MIMO_ONLY/index.html","FOR_MIMO_ONLY/styles.css","FOR_MIMO_ONLY/ReactRouter.jsx"]},
+    {"id":"react-router-full","name":"Full React Router + CSS + HTML + JavaScript","files":["FOR_MIMO_ONLY/index.html","FOR_MIMO_ONLY/styles.css","FOR_MIMO_ONLY/index.js","FOR_MIMO_ONLY/ReactApp.jsx","FOR_MIMO_ONLY/ReactRouter.jsx"]},
+    {"id":"all","name":"All Mimo Types","files":["FOR_MIMO_ONLY/index.html","FOR_MIMO_ONLY/index.js","FOR_MIMO_ONLY/MimoCard.jsx","FOR_MIMO_ONLY/styles.css","FOR_MIMO_ONLY/ReactApp.jsx","FOR_MIMO_ONLY/ReactRouter.jsx"]}
+  ]
 }
